@@ -4,8 +4,17 @@ function App() {
   return (
     <div style={{background: "#dfe6e9", height:"100vh", }}>
       <div style={{display: "flex", justifyContent: "center"}}>
-      <PostComponent />
-    </div>
+        <div>
+          <div>
+            <PostComponent />
+            <br />
+          </div>
+          <div>
+            <PostComponent />
+            <br />
+          </div>  
+        </div>
+      </div>
     </div>
   )
 }
@@ -15,7 +24,7 @@ const style = {width: 200, backgroundColor: "white", bortderRadius : 10, borderC
 function PostComponent() {
   return <div style={style}> 
     <div style={{display: "flex"}}>
-      <img src={"https://media.licdn.com/dms/image/v2/D5603AQF1kRvp…eta&t=D3jp4T_Z7s-zDV5gwrAyIVwv7KBxH2ZbrMCFkQnu0WE"} style={{
+      <img src={""} style={{
         width: 30,
         height: 30,
         borderRadius :20 
