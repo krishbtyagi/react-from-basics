@@ -1,37 +1,38 @@
-import { PostComponent } from "./Post"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [currentTab, setCurrentTab] = useState(1);
+  const [tabData, setTabData] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const postComponent = posts.map(post => <PostComponent
-          name={post.name}
-          subtitle={post.subtitle}
-          time={post.time}
-          image={post.image}
-          description={post.description}
-          /> )
+  useEffect(function(){
+    setLoading(true);
+    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+      .then(async res => {
+        const json = await res.json();
+        setTabData(json);
+        setLoading(false);
+      });
+      
+  }, [currentTab]);
 
-  function addPost() {
-    setPosts([...posts, {
-      name: "ankit",
-      subtitle: "30 followers",
-      time: "3m ago",
-      image: "",
-      description: "hello"
-    }])
-  }
 
-  return (
-    <div style={{background : "#dfe6e9", height: "100vh",}}>
-      <button onClick={addPost}>Add Post</button>
-      <div style={{display:"flex", justifyContent: "center"}}>
-        <div>
-          {postComponent}
-        </div>
-      </div>
-    </div>
-  )
+  return <div>
+    <button onClick={function() {
+      setCurrentTab(1)
+    }} style={{color: currentTab == 1 ? "red" : "black"}}>Todo1</button>
+    <button onClick={function() {
+      setCurrentTab(2)
+    }} style={{color: currentTab == 2 ? "red" : "black"}}>Todo2</button>
+    <button onClick={function() {
+      setCurrentTab(3)
+    }} style={{color: currentTab == 3 ? "red" : "black"}}>Todo3</button>
+    <button onClick={function() {
+      setCurrentTab(4)
+    }} style={{color: currentTab == 4 ? "red" : "black"}}>Todo4</button>
+<br />
+    {loading ? "Loading..." : tabData.title}
+  </div>
 }
 
 export default App
