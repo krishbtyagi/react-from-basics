@@ -3,14 +3,26 @@ function App() {
 
   return (
     <div style={{background: "#dfe6e9", height:"100vh", }}>
+      <div><h1>hi, krish</h1></div>
       <div style={{display: "flex", justifyContent: "center"}}>
         <div>
           <div>
-            <PostComponent />
+            <PostComponent
+            name={"krish"}
+            subtitle={"20 followers"}
+            time={"2m ago"}
+            image={""}
+            description={"very happy to announce..."}
+            />
             <br />
           </div>
           <div>
-            <PostComponent />
+            <PostComponent
+            name={"ankit"}
+            subtitle={"promoted"}
+            image={""}
+            description={"very glad to announce..."}
+            />
             <br />
           </div>  
         </div>
@@ -21,7 +33,7 @@ function App() {
 
 const style = {width: 200, backgroundColor: "white", bortderRadius : 10, borderColor : "gray", borderWidth: 1, padding: 20 }
 
-function PostComponent() {
+function PostComponent({name, subtitle, time, description}) {
   return <div style={style}> 
     <div style={{display: "flex"}}>
       <img src={""} style={{
@@ -31,14 +43,14 @@ function PostComponent() {
       }} />
       <div style= {{fontSize: 10, marginLeft: 10}}>
         <b>
-          krish
+          {name}
         </b>
-        <div>69 followers</div>
-        <div>20m</div>
+        <div> {subtitle} </div>
+        {(time !== undefined) ? <div>{time}</div> : null}
       </div>
     </div>
     <div style={{fontSize: 12}} >
-      I am pleased to announce that...
+      {description}
     </div>
 </div>
 }
