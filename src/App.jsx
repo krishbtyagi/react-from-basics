@@ -1,37 +1,24 @@
-import { useState, useEffect } from "react";
-
 function App() {
-  const [currentTab, setCurrentTab] = useState(1);
-  const [tabData, setTabData] = useState({});
-  const [loading, setLoading] = useState(true);
 
-  useEffect(function(){
-    setLoading(true);
-    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
-      .then(async res => {
-        const json = await res.json();
-        setTabData(json);
-        setLoading(false);
-      });
-      
-  }, [currentTab]);
+  return <div style={{display: "flex", background: "gray"}}>
+    <Card>
+      <div style={{color: "green"}}>
+        what to post? <br/>
+      </div>
+    </Card>
+    <Card>
+      <div>
+      hellooo
+      </div>
+    </Card>
+  </div>
+}
 
-
-  return <div>
-    <button onClick={function() {
-      setCurrentTab(1)
-    }} style={{color: currentTab == 1 ? "red" : "black"}}>Todo1</button>
-    <button onClick={function() {
-      setCurrentTab(2)
-    }} style={{color: currentTab == 2 ? "red" : "black"}}>Todo2</button>
-    <button onClick={function() {
-      setCurrentTab(3)
-    }} style={{color: currentTab == 3 ? "red" : "black"}}>Todo3</button>
-    <button onClick={function() {
-      setCurrentTab(4)
-    }} style={{color: currentTab == 4 ? "red" : "black"}}>Todo4</button>
-<br />
-    {loading ? "Loading..." : tabData.title}
+function Card({children}) {
+  return <div style={{background: "white", borderRadius: 10, color: "black", padding: 10, margin :10}}>
+    upper topbar
+    {children}
+    lower footer
   </div>
 }
 
